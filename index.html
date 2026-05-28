@@ -805,7 +805,7 @@
             vibrate: [100, 50, 100]
           });
           
-          // Fechar automaticamente após 5 segundos
+          // Fechar automaticame;nte após 5 segundos
           setTimeout(() => { notification.close(); }, 5000);
           
           // Clicar na notificação para abrir o app
@@ -1291,41 +1291,20 @@ function dispararNotificacaoReal(titulo, corpo, icone){
     var reg = window._swReg;
     if(reg && reg.showNotification){
       reg.showNotification(titulo, {
-        body: corpo,
-        // Ícone do app
-const iconData = './icon-192.png';
 
-// PEDIR PERMISSÃO
-Notification.requestPermission().then(function(permission){
+  body: corpo,
 
-  if(permission === 'granted'){
+  icon: './icon-192.png',
 
-    // NOTIFICAÇÃO
-    const notification = new Notification('Transferencia recebida', {
+  badge: './icon-192.png',
 
-      body: 'Você recebeu uma transferência de R$ ' + valor + ' de ' + remetente,
+  vibrate: [100,50,100],
 
-      icon: './icon-192.png',
+  tag: 'nubank-pix-' + Date.now(),
 
-      badge: './icon-192.png',
+  requireInteraction: false
 
-      tag: 'nubank-pix-' + Date.now(),
-
-      requireInteraction: false,
-
-      vibrate: [100, 50, 100]
-
-    });
-    } else if(Notification.permission === 'granted'){
-      new Notification(titulo, { body: corpo, icon: icone });
-    }
-  }
-  if(Notification.permission === 'granted'){
-    _show();
-  } else {
-    solicitarPermissaoNotificacao(function(ok){ if(ok) _show(); });
-  }
-}
+});
 
 // ===== EDIÇÃO DE SALDOS — MODAL UNIVERSAL =====
 function criarModalSaldo(){
@@ -1470,4 +1449,4 @@ if ('serviceWorker' in navigator) {
 </body>
 </html>
 </body>
-            </html>
+                                                                                                                                                                                                            </html>
