@@ -1292,12 +1292,30 @@ function dispararNotificacaoReal(titulo, corpo, icone){
     if(reg && reg.showNotification){
       reg.showNotification(titulo, {
         body: corpo,
-        icon: icone || './icon-192.png',
-        badge: './icon-192.png',
-        vibrate: [200, 100, 200],
-        tag: 'nubank-' + Date.now(),
-        requireInteraction: false
-      });
+        // Ícone do app
+const iconData = './icon-192.png';
+
+// PEDIR PERMISSÃO
+Notification.requestPermission().then(function(permission){
+
+  if(permission === 'granted'){
+
+    // NOTIFICAÇÃO
+    const notification = new Notification('Transferencia recebida', {
+
+      body: 'Você recebeu uma transferência de R$ ' + valor + ' de ' + remetente,
+
+      icon: './icon-192.png',
+
+      badge: './icon-192.png',
+
+      tag: 'nubank-pix-' + Date.now(),
+
+      requireInteraction: false,
+
+      vibrate: [100, 50, 100]
+
+    });
     } else if(Notification.permission === 'granted'){
       new Notification(titulo, { body: corpo, icon: icone });
     }
@@ -1452,4 +1470,4 @@ if ('serviceWorker' in navigator) {
 </body>
 </html>
 </body>
-</html>
+            </html>
