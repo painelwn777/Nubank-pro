@@ -2,7 +2,7 @@
 
 self.addEventListener('install', function(event){
 
-  console.log('SW instalado');
+  console.log('Service Worker instalado');
 
   self.skipWaiting();
 
@@ -12,7 +12,7 @@ self.addEventListener('install', function(event){
 
 self.addEventListener('activate', function(event){
 
-  console.log('SW ativado');
+  console.log('Service Worker ativado');
 
 });
 
@@ -32,27 +32,27 @@ self.addEventListener('notificationclick', function(event){
 
 
 
-self.addEventListener('push', function(e){
+self.addEventListener('push', function(event){
 
-  var data = {};
+  let data = {};
 
-  try{
+  try {
 
-    data = e.data.json();
+    data = event.data.json();
 
-  } catch(ex){
+  } catch(e){
 
     data = {
 
       title: 'Nubank',
 
-      body: e.data ? e.data.text() : 'Nova notificação'
+      body: 'Nova notificação'
 
     };
 
   }
 
-  e.waitUntil(
+  event.waitUntil(
 
     self.registration.showNotification(
 
@@ -66,9 +66,9 @@ self.addEventListener('push', function(e){
 
         badge: './icon-192.png',
 
-        vibrate: [200,100,200],
+        vibrate: [100,50,100],
 
-        tag: data.tag || 'nubank',
+        tag: 'nubank-pix',
 
         requireInteraction: false
 
